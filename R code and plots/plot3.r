@@ -13,10 +13,18 @@ library(reshape)
 febsub<-feb2[,c(11,7,8,9)]
 feb<-melt(febsub, id=c("DateTime"))
 
-png(filename="plot3.png")
-three<-ggplot(feb)+geom_line(aes(x=DateTime,y=value,colour=variable))+
-  scale_colour_manual(values=c("black","red","blue"))+xlab("")+ylab("Energy sub metering")
+#png(filename="plot3.png")
+#three<-ggplot(feb)+geom_line(aes(x=DateTime,y=value,colour=variable))+
+#  scale_colour_manual(values=c("black","red","blue"))+xlab("")+ylab("Energy sub metering")
 
-three+theme(legend.title=element_blank(),legend.position = c(0.94,.94),
-                   panel.background = element_rect(fill = 'white', colour = 'black'))
+#three+theme(legend.title=element_blank(),legend.position = c(0.94,.94),
+#                   panel.background = element_rect(fill = 'white', colour = 'black'))
+#dev.off()
+
+png(file="plot3.png", width=480, height=480)
+plot(feb2$DateTime, d$Sub_metering_1, type="l", xlab = "", ylab="Energy sub metering")
+lines(d$DateTime, d$Sub_metering_2, col="#ff0000")
+lines(d$DateTime, d$Sub_metering_3, col="#0000ff")
+legend("topright",legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),border="black",
+       col=c("black","red","blue"),lwd=c(2.5,2.5,2.5))
 dev.off()

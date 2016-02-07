@@ -9,7 +9,11 @@ dim(feb2)
 feb2$DateTime <- strptime(paste(feb2$Date, feb2$Time), "%d/%m/%Y %H:%M:%S") 
 for (x in 3:9){feb2[names(df)[x]]<-as.numeric(feb2[,x])}
 
-png(filename="plot2.png")
-ggplot(data=feb2, aes(x=DateTime, y=as.numeric(Global_active_power), group=1))+ylab("Global Active Power (kilowatts)")+
-  xlab("")+geom_line(colour="black", size=.5)+theme(panel.background = element_rect(fill = 'white', colour = 'black'))
+#png(filename="plot2.png")
+#ggplot(data=feb2, aes(x=DateTime, y=as.numeric(Global_active_power), group=1))+ylab("Global Active Power (kilowatts)")+
+#  xlab("")+geom_line(colour="black", size=.5)+theme(panel.background = element_rect(fill = 'white', colour = 'black'))
+#dev.off()
+
+png(file = "plot2.png", width=480, height=480)
+plot(feb2$DateTime, feb2$Global_active_power,type="l", xlab = "", ylab = "Global Active Power (killowats)")
 dev.off()
